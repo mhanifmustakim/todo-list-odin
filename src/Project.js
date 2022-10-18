@@ -10,12 +10,8 @@ const Project = (title) => {
         todoList.push(todo);
     }
 
-    const removeTodoWithId = (todoId) => {
+    const removeTodoId = (todoId) => {
         removeById(todoList, todoId)
-    }
-
-    const setDescription = (desc) => {
-        description = desc;
     }
 
     return {
@@ -25,8 +21,7 @@ const Project = (title) => {
         description,
         todoList,
         addTodo,
-        removeTodoWithId,
-        setDescription
+        removeTodoId,
     }
 }
 

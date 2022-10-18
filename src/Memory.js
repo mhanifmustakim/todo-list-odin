@@ -7,14 +7,14 @@ const Memory = (function () {
         projects.push(project);
     }
 
-    const removeFromProjects = (projectId) => {
+    const removeProjectId = (projectId) => {
         removeById(projects, projectId)
     }
 
     return {
         projects,
         addToProjects,
-        removeFromProjects
+        removeProjectId
     }
 })()
 

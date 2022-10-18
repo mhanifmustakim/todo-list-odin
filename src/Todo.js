@@ -8,6 +8,21 @@ const Todo = function (title) {
         isDone = isDone ? false : true;
     }
 
+    const setTitle = (newTitle) => {
+        title = newTitle;
+    }
+
+    const setDescription = (desc) => {
+        description = desc;
+    }
+
+    const setDueDate = (date) => {
+        dueDate = date;
+    }
+
+    const setPriority = (prio) => {
+        priority = prio
+    }
 
     return {
         title,
@@ -17,7 +32,11 @@ const Todo = function (title) {
         id,
         type,
         isDone,
-        toggleDone
+        toggleDone,
+        setTitle,
+        setDescription,
+        setDueDate,
+        setPriority
     }
 }
 

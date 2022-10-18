@@ -14,6 +14,14 @@ const Project = (title) => {
         removeById(todoList, todoId)
     }
 
+    const setTitle = (newTitle) => {
+        title = newTitle;
+    }
+
+    const setDescription = (desc) => {
+        description = desc;
+    }
+
     return {
         id,
         type,
@@ -22,6 +30,8 @@ const Project = (title) => {
         todoList,
         addTodo,
         removeTodoId,
+        setTitle,
+        setDescription
     }
 }
 

@@ -1,3 +1,5 @@
+import { removeById } from "./Utils";
+
 const Project = (title) => {
     const id = Project.getId();
     const type = "Project";
@@ -8,13 +10,8 @@ const Project = (title) => {
         todoList.push(todo);
     }
 
-    const removeTodoWithId = (id) => {
-        const index = todoList.findIndex((todo) => todo.id === id);
-        if (index !== -1) {
-            return todoList.splice(index, 1);
-        } else {
-            console.error("Trying to delete an item that does not exist");
-        }
+    const removeTodoWithId = (todoId) => {
+        removeById(todoList, todoId)
     }
 
     const setDescription = (desc) => {

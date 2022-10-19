@@ -1,9 +1,11 @@
 import { removeById } from "./Utils";
 
-const Project = (title) => {
+const Project = (projectTitle) => {
     const id = Project.getId();
     const type = "Project";
     let todoList = [];
+    let title = projectTitle;
+    let isBookmarked = false;
     let description;
 
     const addTodo = (todo) => {
@@ -22,16 +24,30 @@ const Project = (title) => {
         description = desc;
     }
 
+    const setBookmarked = (bool) => {
+        isBookmarked = bool;
+    }
+
     return {
         id,
         type,
-        title,
-        description,
-        todoList,
+        get title() {
+            return title
+        },
+        get description() {
+            return description
+        },
+        get todoList() {
+            return todoList
+        },
+        get isBookmarked() {
+            return isBookmarked
+        },
         addTodo,
         removeTodoId,
         setTitle,
-        setDescription
+        setDescription,
+        setBookmarked
     }
 }
 

@@ -22,6 +22,10 @@ const NavControl = (function () {
         document.querySelector("#add-project").classList.toggle("display-none");
     }
 
+    const toggleNav = () => {
+        document.querySelector("#nav").classList.toggle("display-none");
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const title = document.querySelector(`input[name="project-title"]`);
@@ -64,6 +68,7 @@ const NavControl = (function () {
         },
         updateActiveNav,
         toggleAddProjectForm,
+        toggleNav,
         handleSubmit,
         updateNavSection,
         handleDelete

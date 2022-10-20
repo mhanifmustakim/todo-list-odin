@@ -44,7 +44,6 @@ const Memory = (function () {
 
     const removeProjectId = (projectId) => {
         removeById(projects, projectId);
-        console.log(Memory);
     }
 
     const addProjectToken = pubsub.subscribe("ProjectAdded", addToProjects);

@@ -16,6 +16,8 @@
     --bg-color: #AFD8F2;
     --nav-color: #cee6f5;
     --custom-white: #EDF2F3;
+    --red: #ff6e6e;
+    --green: #bada55;
     font-size: 16px;
     font-family: "Roboto", sans-serif;
 }
@@ -84,6 +86,16 @@ li::marker {
     cursor: pointer;
 }
 
+#nav button.delete-btn {
+    float: right;
+    background-color: transparent;
+    border: none;
+    color: var(--header-color);
+    font-size: 0.9rem;
+    padding: 0.2em 0.3em;
+    border-radius: 0.2em;
+}
+
 #nav ul>li.active {
     font-weight: bold;
     background-color: var(--bg-color);
@@ -116,11 +128,11 @@ li::marker {
 }
 
 #add-project-btn {
-    background-color: #ff6e6e;
+    background-color: var(--red);
 }
 
 #cancel-project-btn {
-    background-color: #bada55;
+    background-color: var(--green);
 }
 
 #page-footer {

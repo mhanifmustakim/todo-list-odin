@@ -5,6 +5,13 @@ const createProjectNode = (project) => {
     item.setAttribute("data-id", project.id);
     item.textContent = project.title;
     item.addEventListener("click", NavControl.updateActiveNav);
+    if (project.id !== 1) {
+        const dltBtn = document.createElement("button");
+        dltBtn.classList.add("delete-btn");
+        dltBtn.textContent = "X";
+        dltBtn.addEventListener("click", NavControl.handleDelete);
+        item.appendChild(dltBtn);
+    }
     return item
 }
 

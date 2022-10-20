@@ -43,10 +43,12 @@ const Memory = (function () {
     }
 
     const removeProjectId = (projectId) => {
-        removeById(projects, projectId)
+        removeById(projects, projectId);
+        console.log(Memory);
     }
 
     const addProjectToken = pubsub.subscribe("ProjectAdded", addToProjects);
+    const removeProjectToken = pubsub.subscribe("ProjectDeleted", removeProjectId);
 
     return {
         projects,

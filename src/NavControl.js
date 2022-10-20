@@ -49,6 +49,15 @@ const NavControl = (function () {
         updateActiveNav();
     }
 
+    const handleDelete = (event) => {
+        event.stopPropagation();
+        const targetProjectId = event.target.parentElement.getAttribute("data-id");
+
+        // If delete current active nav, default back to home nav
+        if (currentActive === targetProjectId) currentActive = 1;
+        pubsub.publish("ProjectDeleted", [parseInt(targetProjectId)]);
+    }
+
     return {
         get currentActive() {
             return currentActive
@@ -56,7 +65,8 @@ const NavControl = (function () {
         updateActiveNav,
         toggleAddProjectForm,
         handleSubmit,
-        updateNavSection
+        updateNavSection,
+        handleDelete
     }
 })()
 

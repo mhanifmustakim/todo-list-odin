@@ -45,6 +45,8 @@ const NavControl = (function () {
                 projectsList.appendChild(projectNode);
             }
         }
+
+        updateActiveNav();
     }
 
     return {

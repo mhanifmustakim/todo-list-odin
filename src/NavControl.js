@@ -22,6 +22,13 @@ const NavControl = (function () {
         document.querySelector("#add-project").classList.toggle("display-none");
     }
 
+    const toggleBookmarked = (event) => {
+        event.stopPropagation();
+        const targetProjectId = event.target.parentElement.getAttribute("data-id");
+
+        pubsub.publish("ToggleBookmarked", [parseInt(targetProjectId)]);
+    }
+
     const toggleNav = () => {
         document.querySelector("#nav").classList.toggle("display-none");
     }
@@ -69,6 +76,7 @@ const NavControl = (function () {
         updateActiveNav,
         toggleAddProjectForm,
         toggleNav,
+        toggleBookmarked,
         handleSubmit,
         updateNavSection,
         handleDelete

@@ -22,8 +22,10 @@ const Memory = (function () {
         }
 
         const target = projects[index];
+        console.log(target);
         target.setBookmarked(true);
         bookmarkedProjects.push(target);
+        console.log(bookmarkedProjects);
     }
 
     const removeFromBookmarked = (projectId) => {
@@ -38,6 +40,7 @@ const Memory = (function () {
 
 
         const target = bookmarkedProjects[index];
+        console.log(target);
         target.setBookmarked(false);
         bookmarkedProjects.splice(index, 1);
     }
@@ -46,8 +49,24 @@ const Memory = (function () {
         removeById(projects, projectId);
     }
 
+    const getProjectId = (projectId) => {
+        const index = projects.findIndex(
+            (project) => project.id === projectId
+        );
+
+        return projects[index];
+    }
+
     const addProjectToken = pubsub.subscribe("ProjectAdded", addToProjects);
     const removeProjectToken = pubsub.subscribe("ProjectDeleted", removeProjectId);
+    const toggleBookmarkedToken = pubsub.subscribe(
+        "ToggleBookmarked",
+        (id) => {
+            const project = getProjectId(id);
+            project.isBookmarked ? removeFromBookmarked(id) : addToBookmarked(id);
+            console.log(Memory);
+        }
+    );
 
     return {
         projects,

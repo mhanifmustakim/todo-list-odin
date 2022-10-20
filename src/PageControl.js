@@ -12,6 +12,11 @@ const PageControl = (function () {
         NavControl.updateNavSection.bind(NavControl, Memory)
     )
 
+    const toggleBookmarkedToken = pubsub.subscribe(
+        "ToggleBookmarked",
+        NavControl.updateNavSection.bind(NavControl, Memory)
+    )
+
 })()
 
 export default PageControl

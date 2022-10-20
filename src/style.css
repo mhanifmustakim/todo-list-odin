@@ -26,6 +26,11 @@ li::marker {
     content: none;
 }
 
+.icon {
+    width: 1em;
+    height: 1em;
+}
+
 .display-none {
     display: none !important;
 }
@@ -81,9 +86,13 @@ li::marker {
 
 #nav ul>li {
     padding: 0.5rem;
-    padding-left: 1rem;
     border-radius: 0.5em;
     cursor: pointer;
+    display: grid;
+    align-items: center;
+    justify-items: start;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.5rem;
 }
 
 #nav button.delete-btn {
@@ -92,6 +101,7 @@ li::marker {
     border: none;
     color: var(--header-color);
     font-size: 0.9rem;
+    font-weight: bold;
     padding: 0.2em 0.3em;
     border-radius: 0.2em;
 }

@@ -1,10 +1,20 @@
 import NavControl from './NavControl.js';
+import Icon from './Icon.js';
+import starIcon from './Icons/star.svg';
+import startOutlineIcon from './Icons/star-outline.svg';
 
 const createProjectNode = (project) => {
     const item = document.createElement("li");
     item.setAttribute("data-id", project.id);
-    item.textContent = project.title;
-    item.addEventListener("click", NavControl.updateActiveNav);
+
+    if (project.id !== 1) {
+        const icon = project.isBookmarked ? Icon(starIcon) : Icon(startOutlineIcon);
+        icon.addEventListener("click", NavControl.toggleBookmarked);
+        item.appendChild(icon);
+    }
+
+    item.appendChild(document.createTextNode(project.title));
+
     if (project.id !== 1) {
         const dltBtn = document.createElement("button");
         dltBtn.classList.add("delete-btn");
@@ -12,6 +22,8 @@ const createProjectNode = (project) => {
         dltBtn.addEventListener("click", NavControl.handleDelete);
         item.appendChild(dltBtn);
     }
+
+    item.addEventListener("click", NavControl.updateActiveNav);
     return item
 }
 

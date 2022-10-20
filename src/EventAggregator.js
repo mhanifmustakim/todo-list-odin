@@ -2,7 +2,7 @@ import pubsub from 'pubsub.js';
 import NavControl from './NavControl.js';
 import Memory from './Memory.js';
 
-const PageControl = (function () {
+const EventAggregator = (function () {
     const updateNavToken = pubsub.subscribe(
         "ProjectAdded",
         NavControl.updateNavSection.bind(NavControl, Memory));
@@ -19,4 +19,4 @@ const PageControl = (function () {
 
 })()
 
-export default PageControl
+export default EventAggregator

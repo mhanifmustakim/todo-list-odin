@@ -1,3 +1,6 @@
+import pubsub from 'pubsub.js';
+import { createProjectNode } from './NavView.js';
+
 const NavControl = (function () {
     let currentActive = 1;
 
@@ -21,7 +24,27 @@ const NavControl = (function () {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const title = document.querySelector(`input[name="project-title"]`);
+        pubsub.publish("ProjectAdded", [title.value]);
+        title.value = "";
         toggleAddProjectForm();
+    }
+
+    const updateNavSection = (memory) => {
+        const projectsList = document.querySelector("#projects>ul");
+        const bookmarkedList = document.querySelector("#projects-bookmarked");
+
+        projectsList.innerHTML = "";
+        bookmarkedList.innerHTML = "";
+
+        for (let project of memory.projects) {
+            const projectNode = createProjectNode(project);
+            if (project.isBookmarked) {
+                bookmarkedList.appendChild(projectNode);
+            } else {
+                projectsList.appendChild(projectNode);
+            }
+        }
     }
 
     return {
@@ -30,7 +53,8 @@ const NavControl = (function () {
         },
         updateActiveNav,
         toggleAddProjectForm,
-        handleSubmit
+        handleSubmit,
+        updateNavSection
     }
 })()
 

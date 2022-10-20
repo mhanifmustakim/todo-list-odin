@@ -1,4 +1,5 @@
 import Memory from './Memory.js';
+import PageControl from './PageControl.js';
 import PageView from './PageView.js';
 import Project from './Project.js';
 import './style.css';

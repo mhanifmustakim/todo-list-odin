@@ -1,14 +1,20 @@
 import NavControl from './NavControl.js';
+
+const createProjectNode = (project) => {
+    const item = document.createElement("li");
+    item.setAttribute("data-id", project.id);
+    item.textContent = project.title;
+    item.addEventListener("click", NavControl.updateActiveNav);
+    return item
+}
+
 const createBookmarkedSection = (memory) => {
     const ul = document.createElement("ul");
-    ul.id = "nav-main";
+    ul.id = "projects-bookmarked";
 
     for (let project of memory.bookmarkedProjects) {
         // Only shows bookmarked projects in the top of nav section
-        const item = document.createElement("li");
-        item.setAttribute("data-id", project.id);
-        item.textContent = project.title;
-        item.addEventListener("click", NavControl.updateActiveNav);
+        const item = createProjectNode(project);
 
         ul.appendChild(item);
     }
@@ -30,10 +36,7 @@ const createProjectSection = (memory) => {
         // skip Default (Home) Project
         if (project.isBookmarked) continue
 
-        const item = document.createElement("li");
-        item.setAttribute("data-id", project.id);
-        item.textContent = project.title;
-        item.addEventListener("click", NavControl.updateActiveNav);
+        const item = createProjectNode(project);
 
         ul.appendChild(item);
     }
@@ -59,6 +62,7 @@ const createProjectForm = () => {
 
     const input = document.createElement("input");
     input.type = "text";
+    input.required = true;
     input.name = "project-title";
     input.id = "project-title";
     input.placeholder = "New Project Title";
@@ -92,4 +96,4 @@ const createNav = (memory) => {
     return nav
 }
 
-export { createNav }
+export { createNav, createProjectNode }

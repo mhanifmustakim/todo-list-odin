@@ -1,3 +1,5 @@
+import pubsub from 'pubsub.js';
+import Project from './Project.js';
 import { removeById } from "./Utils.js";
 
 const Memory = (function () {
@@ -5,6 +7,7 @@ const Memory = (function () {
     let bookmarkedProjects = [];
 
     const addToProjects = (project) => {
+        if (project.type !== "Project") project = Project(project);
         projects.push(project);
     }
 
@@ -42,6 +45,8 @@ const Memory = (function () {
     const removeProjectId = (projectId) => {
         removeById(projects, projectId)
     }
+
+    const addProjectToken = pubsub.subscribe("ProjectAdded", addToProjects);
 
     return {
         projects,

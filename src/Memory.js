@@ -22,10 +22,8 @@ const Memory = (function () {
         }
 
         const target = projects[index];
-        console.log(target);
         target.setBookmarked(true);
         bookmarkedProjects.push(target);
-        console.log(bookmarkedProjects);
     }
 
     const removeFromBookmarked = (projectId) => {
@@ -40,7 +38,6 @@ const Memory = (function () {
 
 
         const target = bookmarkedProjects[index];
-        console.log(target);
         target.setBookmarked(false);
         bookmarkedProjects.splice(index, 1);
     }
@@ -64,7 +61,6 @@ const Memory = (function () {
         (id) => {
             const project = getProjectId(id);
             project.isBookmarked ? removeFromBookmarked(id) : addToBookmarked(id);
-            console.log(Memory);
         }
     );
 
@@ -74,7 +70,8 @@ const Memory = (function () {
         addToProjects,
         removeProjectId,
         addToBookmarked,
-        removeFromBookmarked
+        removeFromBookmarked,
+        getProjectId
     }
 })()
 

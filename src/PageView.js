@@ -1,4 +1,4 @@
-import { createMain } from './Main.js';
+import { createMain } from './MainView.js';
 import { createNav } from './NavView.js';
 import NavControl from './NavControl.js';
 import Memory from './Memory.js';
@@ -11,7 +11,7 @@ const PageView = (function () {
     const init = () => {
         navDropdown.addEventListener("click", NavControl.toggleNav);
         pageMain.appendChild(createNav(Memory));
-        pageMain.appendChild(createMain());
+        pageMain.appendChild(createMain(Memory));
         NavControl.updateActiveNav();
 
         // Always makes the nav appear if window width is >= 650px

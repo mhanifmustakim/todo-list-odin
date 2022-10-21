@@ -145,6 +145,23 @@ li::marker {
     background-color: var(--green);
 }
 
+#main {
+    display: grid;
+    padding: clamp(1rem, 5vw, 3rem);
+    grid-template: auto 1fr / 1fr;
+    gap: 1rem;
+}
+
+#main .project-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-header>.project-title {
+    font-size: 2.5rem;
+}
+
 #page-footer {
     background-color: var(--footer-color);
 }

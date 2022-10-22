@@ -167,7 +167,7 @@ li::marker {
     position: relative;
 }
 
-.input-group-description .enabler-description {
+.input-group-description .prompt {
     color: var(--fade-color);
     padding-left: 0.5rem;
 }
@@ -180,6 +180,7 @@ li::marker {
     padding: 0.5rem;
     border: none;
     resize: none;
+    font-family: inherit;
 }
 
 .input-group-description button {

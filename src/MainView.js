@@ -9,19 +9,17 @@ const createTitle = (project) => {
 }
 
 const createDesc = (project) => {
-    const description = document.createElement("p");
-    description.classList.add("project-description");
-    description.appendChild(document.createTextNode(project.description));
-    return description
-}
-
-const createDescInput = (project) => {
     const div = document.createElement("div");
     div.classList.add("input-group-description");
 
-    const enabler = document.createElement("p");
-    enabler.classList.add("enabler-description");
-    enabler.appendChild(document.createTextNode("+ Add project description..."));
+    const description = document.createElement("p");
+    const content = project.description ? project.description : "";
+    const prompt = document.createElement("span");
+    prompt.classList.add("prompt");
+    prompt.textContent = content ? "Edit description..." : "Add a project description...";
+    description.classList.add("project-description");
+    description.appendChild(document.createTextNode(content));
+    description.appendChild(prompt);
 
     const input = document.createElement("form");
     input.classList.add("display-none");
@@ -30,6 +28,7 @@ const createDescInput = (project) => {
     const textarea = document.createElement("textarea");
     textarea.name = "project-description";
     textarea.placeholder = "Enter your project description here.";
+    textarea.value = project.description ? project.description : "";
     textarea.required = true;
     textarea.classList.add("input-description");
 
@@ -43,14 +42,14 @@ const createDescInput = (project) => {
     cancelBtn.type = "button";
     cancelBtn.classList.add("cancel-description-btn");
 
-    enabler.addEventListener("click", displayDelete.bind(window, input, enabler));
-    cancelBtn.addEventListener("click", displayDelete.bind(window, enabler, input));
+    description.addEventListener("click", displayDelete.bind(window, input, description));
+    cancelBtn.addEventListener("click", displayDelete.bind(window, description, input));
     input.addEventListener("submit", MainControl.saveDescription);
 
     input.appendChild(textarea);
     input.appendChild(saveBtn);
     input.appendChild(cancelBtn);
-    div.appendChild(enabler);
+    div.appendChild(description);
     div.appendChild(input);
     return div
 }
@@ -62,13 +61,9 @@ const createProjectHeader = (project) => {
     const title = createTitle(project);
     div.appendChild(title);
 
-    if (project.description) {
-        const description = createDesc(project);
-        div.appendChild(description);
-    } else {
-        const inputDesc = createDescInput(project);
-        div.appendChild(inputDesc);
-    }
+    const description = createDesc(project);
+    div.appendChild(description);
+
     return div
 }
 

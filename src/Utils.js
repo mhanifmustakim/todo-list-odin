@@ -7,4 +7,15 @@ const removeById = (list, objectId) => {
     }
 }
 
-export { removeById }
+const displayDelete = (displayNode, deleteNode) => {
+    if (deleteNode.nodeName === "FORM") {
+        [...deleteNode.querySelectorAll("textarea"), ...deleteNode.querySelectorAll("input")].forEach((input) => {
+            input.value = "";
+        })
+    }
+
+    displayNode.classList.remove("display-none");
+    deleteNode.classList.add("display-none");
+}
+
+export { removeById, displayDelete }

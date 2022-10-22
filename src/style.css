@@ -16,6 +16,7 @@
     --bg-color: #AFD8F2;
     --nav-color: #cee6f5;
     --custom-white: #EDF2F3;
+    --fade-color: #505050;
     --red: #ff6e6e;
     --green: #bada55;
     font-size: 16px;
@@ -138,11 +139,11 @@ li::marker {
 }
 
 #add-project-btn {
-    background-color: var(--red);
+    background-color: var(--green);
 }
 
 #cancel-project-btn {
-    background-color: var(--green);
+    background-color: var(--red);
 }
 
 #main {
@@ -160,6 +161,40 @@ li::marker {
 
 .project-header>.project-title {
     font-size: 2.5rem;
+}
+
+.input-group-description {
+    position: relative;
+}
+
+.input-group-description .enabler-description {
+    color: var(--fade-color);
+    padding-left: 0.5rem;
+}
+
+.input-group-description .input-description {
+    background-color: var(--nav-color);
+    border-radius: 1em;
+    width: 100%;
+    height: 10ch;
+    padding: 0.5rem;
+    border: none;
+    resize: none;
+}
+
+.input-group-description button {
+    padding: 0.5rem 1.2rem;
+    float: right;
+    border-radius: 1em;
+}
+
+.input-group-description .save-description-btn {
+    background-color: var(--green);
+}
+
+.input-group-description .cancel-description-btn {
+    background-color: var(--red);
+    margin-right: 0.5rem;
 }
 
 #page-footer {

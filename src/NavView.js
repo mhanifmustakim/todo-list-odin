@@ -87,18 +87,18 @@ const createProjectForm = () => {
     input.placeholder = "New Project Title";
     form.appendChild(input);
 
-    const addBtn = document.createElement("button");
-    addBtn.type = "submit";
-    addBtn.id = "add-project-btn";
-    addBtn.textContent = "Add";
-    form.appendChild(addBtn);
-
     const cancelBtn = document.createElement("button");
     cancelBtn.type = "button";
     cancelBtn.id = "cancel-project-btn";
     cancelBtn.textContent = "Cancel"
     cancelBtn.addEventListener("click", NavControl.toggleAddProjectForm);
     form.appendChild(cancelBtn);
+
+    const addBtn = document.createElement("button");
+    addBtn.type = "submit";
+    addBtn.id = "add-project-btn";
+    addBtn.textContent = "Add";
+    form.appendChild(addBtn);
 
     form.addEventListener("submit", NavControl.handleSubmit);
     return form

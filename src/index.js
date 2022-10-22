@@ -9,4 +9,7 @@ homeProject.setDescription("Your personal default project to store your todos.")
 Memory.addToProjects(homeProject);
 Memory.addToBookmarked(homeProject.id);
 
+const testProject = Project("Test Project");
+Memory.addToProjects(testProject);
+
 PageView.init();

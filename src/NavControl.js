@@ -15,7 +15,7 @@ const NavControl = (function () {
         const nav = document.querySelector(`#nav [data-id="${currentActive}"]`);
         nav.classList.add("active");
         nav.removeEventListener("click", updateActiveNav);
-        pubsub.publish("SetActiveProject", [currentActive]);
+        pubsub.publish("SetActiveProject", [parseInt(currentActive)]);
     }
 
     const toggleAddProjectForm = () => {

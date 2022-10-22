@@ -20,7 +20,16 @@ const EventAggregator = (function () {
 
     const setActiveProjectToken = pubsub.subscribe(
         "SetActiveProject",
-        (id) => MainControl.updateMain(Memory.getProjectId(parseInt(id)))
+        (id) => MainControl.updateMain(Memory.getProjectId(id))
+    )
+
+    const addProjectDescToken = pubsub.subscribe(
+        "AddProjectDesc",
+        (id, desc) => {
+            const project = Memory.getProjectId(id);
+            project.setDescription(desc);
+            MainControl.updateMain(project);
+        }
     )
 
 })()

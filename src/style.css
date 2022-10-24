@@ -198,6 +198,33 @@ li::marker {
     margin-right: 0.5rem;
 }
 
+#todo-list{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1.2em;
+}
+
+.todo{
+    background-color: var(--custom-white);
+    padding: 1.3em 1em;
+    border-radius: 1em;
+    width: 100%;
+    display: grid;
+    grid-template: auto / 1fr auto auto;
+    align-items: center;
+    gap: 1ch;
+}
+
+.todo-dueDate{
+    color: var(--fade-color);
+    font-size: 0.9em;
+}
+
+.todo-checkbox{
+    width: 1.5em;
+    height: 1.5em;
+}
+
 #page-footer {
     background-color: var(--footer-color);
 }

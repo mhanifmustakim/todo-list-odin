@@ -1,4 +1,5 @@
 import MainControl from "./MainControl.js";
+import { createTodo } from "./TodoView.js";
 import { displayDelete } from "./Utils.js";
 
 const createTitle = (project) => {
@@ -67,13 +68,25 @@ const createProjectHeader = (project) => {
     return div
 }
 
+const createTodos = (project) => {
+    const todoList = document.createElement("div");
+    todoList.id = "todo-list";
+    for (let todo of project.todoList) {
+        todoList.appendChild(createTodo(todo));
+    }
+    return todoList
+}
+
 const createMain = (memory) => {
     const main = document.createElement("div");
     main.id = "main";
 
     const baseProject = memory.getProjectId(1);
     main.appendChild(createProjectHeader(baseProject));
+    if (baseProject.todoList) {
+        main.appendChild(createTodos(baseProject));
+    }
     return main;
 }
 
-export { createMain, createProjectHeader }
+export { createMain, createProjectHeader, createTodos }

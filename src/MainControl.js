@@ -1,5 +1,5 @@
 import pubsub from 'pubsub.js';
-import { createProjectHeader } from './MainView.js';
+import { createProjectHeader, createTodos } from './MainView.js';
 import { displayDelete } from './Utils.js';
 
 const MainControl = (function () {
@@ -7,6 +7,9 @@ const MainControl = (function () {
         const main = document.querySelector("#main");
         main.innerHTML = "";
         main.appendChild(createProjectHeader(project));
+        if (project.todoList) {
+            main.appendChild(createTodos(project));
+        }
     }
 
     const saveDescription = (event) => {

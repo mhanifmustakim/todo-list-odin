@@ -1,3 +1,5 @@
+import TodoControl from "./TodoControl.js";
+
 const createTodo = (todo) => {
     const node = document.createElement("div");
     node.classList.add("todo");
@@ -15,6 +17,10 @@ const createTodo = (todo) => {
     isDone.classList.add("todo-checkbox");
     isDone.type = "checkbox";
     isDone.checked = todo.isDone;
+    isDone.addEventListener(
+        "click",
+        TodoControl.toggleDone.bind(window, todo)
+        )
 
     node.appendChild(title);
     node.appendChild(dueDate);

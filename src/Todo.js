@@ -25,13 +25,23 @@ const Todo = function (title) {
     }
 
     return {
-        title,
-        description,
-        dueDate,
-        priority,
+        get title() {
+            return title
+        },
+        get description() {
+            return description
+        },
+        get dueDate() {
+            return dueDate
+        },
+        get priority() {
+            return priority
+        },
+        get isDone() {
+            return isDone
+        },
         id,
         type,
-        isDone,
         toggleDone,
         setTitle,
         setDescription,

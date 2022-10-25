@@ -9,6 +9,7 @@ const Project = (projectTitle) => {
     let description;
 
     const addTodo = (todo) => {
+        todo.projectId = id;
         todoList.push(todo);
     }
 
@@ -26,6 +27,14 @@ const Project = (projectTitle) => {
 
     const setBookmarked = (bool) => {
         isBookmarked = bool;
+    }
+
+    const getTodoId = (todoId) => {
+        const index = todoList.findIndex(
+            (todo) => todo.id === todoId
+        );
+
+        return todoList[index];
     }
 
     return {
@@ -47,7 +56,8 @@ const Project = (projectTitle) => {
         removeTodoId,
         setTitle,
         setDescription,
-        setBookmarked
+        setBookmarked,
+        getTodoId
     }
 }
 

@@ -32,6 +32,13 @@ const EventAggregator = (function () {
         }
     )
 
+    const toggleTodoToken = pubsub.subscribe(
+        "ToggleIsDoneTodo",
+        (todo) => {
+            const obj = Memory.getProjectId(todo.projectId).getTodoId(todo.id);
+            obj.toggleDone();
+        }
+    )
 })()
 
 export default EventAggregator

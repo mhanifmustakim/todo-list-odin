@@ -17,7 +17,13 @@ const createDesc = (project) => {
     const content = project.description ? project.description : "";
     const prompt = document.createElement("span");
     prompt.classList.add("prompt");
-    prompt.textContent = content ? "Edit description..." : "Add a project description...";
+    if (content) {
+        prompt.textContent = "Edit description" 
+        prompt.classList.add("float-right");
+    } else {
+        prompt.textContent =  "Add a project description...";
+    }
+    
     description.classList.add("project-description");
     description.appendChild(document.createTextNode(content));
     description.appendChild(prompt);
@@ -43,7 +49,7 @@ const createDesc = (project) => {
     cancelBtn.type = "button";
     cancelBtn.classList.add("cancel-description-btn");
 
-    description.addEventListener("click", displayDelete.bind(window, input, description));
+    prompt.addEventListener("click", displayDelete.bind(window, input, description));
     cancelBtn.addEventListener("click", displayDelete.bind(window, description, input));
     input.addEventListener("submit", MainControl.saveDescription);
 

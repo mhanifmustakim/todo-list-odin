@@ -2,7 +2,6 @@ import { createMain } from './MainView.js';
 import { createNav } from './NavView.js';
 import NavControl from './NavControl.js';
 import Memory from './Memory.js';
-import pubsub from 'pubsub.js';
 
 const PageView = (function () {
     const pageMain = document.querySelector("#page-main");

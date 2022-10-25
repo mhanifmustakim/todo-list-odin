@@ -40,6 +40,14 @@ li::marker {
     font-weight: bold;
 }
 
+.text-fade {
+    color: var(--fade-color);
+}
+
+.float-right{
+    float: right;
+}
+
 #page-container {
     width: 100vw;
     min-height: 100vh;
@@ -215,6 +223,11 @@ li::marker {
     gap: 1ch;
 }
 
+.todo-title{
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
 .todo-dueDate{
     color: var(--fade-color);
     font-size: 0.9em;
@@ -223,6 +236,11 @@ li::marker {
 .todo-checkbox{
     width: 1.5em;
     height: 1.5em;
+}
+
+.todo-desc{
+    grid-column: 1 / -1;
+    padding: 0 0.5rem;
 }
 
 #page-footer {

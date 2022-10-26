@@ -1,13 +1,13 @@
 import pubsub from "pubsub.js";
 
-const TodoControl = (function(){
-    const toggleDone = (todo) => {
-        pubsub.publish("ToggleIsDoneTodo", [todo])
-    }
+const TodoControl = (function () {
+  const toggleDone = (todo) => {
+    pubsub.publish("ToggleIsDoneTodo", [todo]);
+  };
 
-    return {
-        toggleDone
-    }
+  return {
+    toggleDone,
+  };
 })();
 
-export default TodoControl
+export default TodoControl;

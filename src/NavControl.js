@@ -1,5 +1,5 @@
 import pubsub from "pubsub.js";
-import { createProjectNode } from "./NavView.js";
+import { createProjectNode } from "./NavView";
 
 const NavControl = (function () {
   let currentActive = 1;
@@ -51,7 +51,7 @@ const NavControl = (function () {
     projectsList.innerHTML = "";
     bookmarkedList.innerHTML = "";
 
-    for (let project of memory.projects) {
+    for (const project of memory.projects) {
       const projectNode = createProjectNode(project);
       if (project.isBookmarked) {
         bookmarkedList.appendChild(projectNode);

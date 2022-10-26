@@ -1,6 +1,6 @@
-import MainControl from "./MainControl.js";
-import { createTodo } from "./TodoView.js";
-import { displayDelete } from "./Utils.js";
+import MainControl from "./MainControl";
+import { createTodo } from "./TodoView";
+import { displayDelete } from "./Utils";
 
 const createTitle = (project) => {
   const title = document.createElement("h3");
@@ -83,7 +83,7 @@ const createProjectHeader = (project) => {
 const createTodos = (project) => {
   const todoList = document.createElement("div");
   todoList.id = "todo-list";
-  for (let todo of project.todoList) {
+  for (const todo of project.todoList) {
     todoList.appendChild(createTodo(todo));
   }
   return todoList;

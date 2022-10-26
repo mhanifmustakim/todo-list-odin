@@ -1,11 +1,14 @@
-const Todo = function (title) {
+const Todo = function (_title) {
   const type = "Todo";
   const id = Todo.getId();
-  let description, dueDate, priority;
+  let title = _title;
+  let description;
+  let dueDate;
+  let priority;
   let isDone = false;
 
   const toggleDone = () => {
-    isDone = isDone ? false : true;
+    isDone = !isDone;
   };
 
   const setTitle = (newTitle) => {
@@ -53,7 +56,9 @@ const Todo = function (title) {
 // Initialize static count for Todo
 Todo.count = 1;
 Todo.getId = function () {
-  return Todo.count++;
+  const current = Todo.count;
+  Todo.count += 1;
+  return current;
 };
 
 export default Todo;

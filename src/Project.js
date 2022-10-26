@@ -3,12 +3,13 @@ import { removeById } from "./Utils";
 const Project = (projectTitle) => {
   const id = Project.getId();
   const type = "Project";
-  let todoList = [];
+  const todoList = [];
   let title = projectTitle;
   let isBookmarked = false;
   let description;
 
   const addTodo = (todo) => {
+    // eslint-disable-next-line no-param-reassign
     todo.projectId = id;
     todoList.push(todo);
   };
@@ -62,7 +63,9 @@ const Project = (projectTitle) => {
 // Set Project static counter for id
 Project.counter = 1;
 Project.getId = function () {
-  return Project.counter++;
+  const current = Project.counter;
+  Project.counter += 1;
+  return current;
 };
 
 export default Project;

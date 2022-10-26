@@ -1,5 +1,5 @@
-import NavControl from "./NavControl.js";
-import Icon from "./Icon.js";
+import NavControl from "./NavControl";
+import Icon from "./Icon";
 import starIcon from "./Icons/star.svg";
 import startOutlineIcon from "./Icons/star-outline.svg";
 
@@ -31,7 +31,7 @@ const createBookmarkedSection = (memory) => {
   const ul = document.createElement("ul");
   ul.id = "projects-bookmarked";
 
-  for (let project of memory.bookmarkedProjects) {
+  for (const project of memory.bookmarkedProjects) {
     // Only shows bookmarked projects in the top of nav section
     const item = createProjectNode(project);
 
@@ -51,7 +51,7 @@ const createProjectSection = (memory) => {
 
   const ul = document.createElement("ul");
 
-  for (let project of memory.projects) {
+  for (const project of memory.projects) {
     // skip Default (Home) Project
     if (project.isBookmarked) continue;
 

@@ -1,24 +1,18 @@
-import pubsub from "pubsub.js";
-import Project from "./Project.js";
-import { removeById } from "./Utils.js";
+import Project from "./Project";
+import { removeById } from "./Utils";
 
 const Memory = (function () {
-  let projects = [];
-  let bookmarkedProjects = [];
+  const projects = [];
+  const bookmarkedProjects = [];
 
   const addToProjects = (project) => {
+    // eslint-disable-next-line no-param-reassign
     if (project.type !== "Project") project = Project(project);
     projects.push(project);
   };
 
   const addToBookmarked = (projectId) => {
     const index = projects.findIndex((project) => project.id === projectId);
-
-    if (index === -1) {
-      console.error("Index of item not found in Projects list");
-      return;
-    }
-
     const target = projects[index];
     target.setBookmarked(true);
     bookmarkedProjects.push(target);
@@ -28,12 +22,6 @@ const Memory = (function () {
     const index = bookmarkedProjects.findIndex(
       (project) => project.id === projectId
     );
-
-    if (index === -1) {
-      console.error("Index of item not found in Projects list");
-      return;
-    }
-
     const target = bookmarkedProjects[index];
     target.setBookmarked(false);
     bookmarkedProjects.splice(index, 1);
@@ -48,16 +36,6 @@ const Memory = (function () {
 
     return projects[index];
   };
-
-  const addProjectToken = pubsub.subscribe("ProjectAdded", addToProjects);
-  const removeProjectToken = pubsub.subscribe(
-    "ProjectDeleted",
-    removeProjectId
-  );
-  const toggleBookmarkedToken = pubsub.subscribe("ToggleBookmarked", (id) => {
-    const project = getProjectId(id);
-    project.isBookmarked ? removeFromBookmarked(id) : addToBookmarked(id);
-  });
 
   return {
     projects,

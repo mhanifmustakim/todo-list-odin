@@ -1,7 +1,7 @@
-import { createMain } from "./MainView.js";
-import { createNav } from "./NavView.js";
-import NavControl from "./NavControl.js";
-import Memory from "./Memory.js";
+import { createMain } from "./MainView";
+import { createNav } from "./NavView";
+import NavControl from "./NavControl";
+import Memory from "./Memory";
 
 const PageView = (function () {
   const pageMain = document.querySelector("#page-main");

@@ -1,35 +1,40 @@
 import pubsub from "pubsub.js";
-import NavControl from "./NavControl.js";
-import Memory from "./Memory.js";
-import MainControl from "./MainControl.js";
+import NavControl from "./NavControl";
+import Memory from "./Memory";
+import MainControl from "./MainControl";
 
 const EventAggregator = (function () {
-  const updateNavToken = pubsub.subscribe(
-    "ProjectAdded",
-    NavControl.updateNavSection.bind(NavControl, Memory)
-  );
+  pubsub.subscribe("ProjectAdded", (data) => {
+    Memory.addToProjects(data);
+    NavControl.updateNavSection(Memory);
+  });
 
-  const deleteNavToken = pubsub.subscribe(
-    "ProjectDeleted",
-    NavControl.updateNavSection.bind(NavControl, Memory)
-  );
+  pubsub.subscribe("ProjectDeleted", (data) => {
+    Memory.removeProjectId(data);
+    NavControl.updateNavSection(Memory);
+  });
 
-  const toggleBookmarkedToken = pubsub.subscribe(
-    "ToggleBookmarked",
-    NavControl.updateNavSection.bind(NavControl, Memory)
-  );
+  pubsub.subscribe("ToggleBookmarked", (id) => {
+    const project = Memory.getProjectId(id);
+    if (project.isBookmarked) {
+      Memory.removeFromBookmarked(id);
+    } else {
+      Memory.addToBookmarked(id);
+    }
+    NavControl.updateNavSection(Memory);
+  });
 
-  const setActiveProjectToken = pubsub.subscribe("SetActiveProject", (id) =>
+  pubsub.subscribe("SetActiveProject", (id) =>
     MainControl.updateMain(Memory.getProjectId(id))
   );
 
-  const addProjectDescToken = pubsub.subscribe("AddProjectDesc", (id, desc) => {
+  pubsub.subscribe("AddProjectDesc", (id, desc) => {
     const project = Memory.getProjectId(id);
     project.setDescription(desc);
     MainControl.updateMain(project);
   });
 
-  const toggleTodoToken = pubsub.subscribe("ToggleIsDoneTodo", (todo) => {
+  pubsub.subscribe("ToggleIsDoneTodo", (todo) => {
     const obj = Memory.getProjectId(todo.projectId).getTodoId(todo.id);
     obj.toggleDone();
   });

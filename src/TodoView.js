@@ -1,5 +1,4 @@
-import TodoControl from "./TodoControl.js";
-import { displayDelete } from "./Utils.js";
+import TodoControl from "./TodoControl";
 
 const createTitle = (todo) => {
   const title = document.createElement("header");
@@ -71,4 +70,5 @@ const createTodo = (todo) => {
   return node;
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export { createTodo };

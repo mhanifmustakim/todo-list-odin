@@ -1,8 +1,8 @@
-import EventAggregator from "./EventAggregator.js";
-import Memory from "./Memory.js";
-import PageView from "./PageView.js";
-import Project from "./Project.js";
-import Todo from "./Todo.js";
+import "./EventAggregator";
+import Memory from "./Memory";
+import PageView from "./PageView";
+import Project from "./Project";
+import Todo from "./Todo";
 import "./style.css";
 
 const homeProject = Project("Home");

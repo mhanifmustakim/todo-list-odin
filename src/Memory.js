@@ -37,6 +37,11 @@ const Memory = (function () {
     return projects[index];
   };
 
+  const getTodoId = (projectId, todoId) => {
+    const project = getProjectId(projectId);
+    return project.getTodoId(todoId);
+  };
+
   return {
     projects,
     bookmarkedProjects,
@@ -45,6 +50,7 @@ const Memory = (function () {
     addToBookmarked,
     removeFromBookmarked,
     getProjectId,
+    getTodoId,
   };
 })();
 

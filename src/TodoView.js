@@ -1,4 +1,5 @@
 import TodoControl from "./TodoControl";
+import { displayDelete } from "./Utils";
 
 const createTitle = (todo) => {
   const title = document.createElement("header");
@@ -28,11 +29,12 @@ const createCheckbox = (todo) => {
 };
 
 const createDescription = (todo) => {
+  const div = document.createElement("div");
   const desc = document.createElement("div");
   let prompt;
 
-  desc.classList.add("todo-desc");
-  desc.classList.add("display-none");
+  div.classList.add("display-none");
+  div.classList.add("todo-desc");
   if (todo.description) {
     const todoDesc = document.createElement("p");
     todoDesc.textContent = todo.description;
@@ -46,9 +48,41 @@ const createDescription = (todo) => {
     prompt.textContent = "Add description";
   }
 
+  const input = document.createElement("form");
+  input.classList.add("display-none");
+  input.setAttribute("data-id", todo.id);
+
+  const textarea = document.createElement("textarea");
+  textarea.name = "todo-description";
+  textarea.placeholder = "Enter your todo description here.";
+  textarea.value = todo.description ? todo.description : "";
+  textarea.required = true;
+  textarea.classList.add("input-todo-description");
+
+  const saveBtn = document.createElement("button");
+  saveBtn.appendChild(document.createTextNode("Save"));
+  saveBtn.type = "submit";
+  saveBtn.classList.add("save-description-btn");
+
+  const cancelBtn = document.createElement("button");
+  cancelBtn.appendChild(document.createTextNode("Cancel"));
+  cancelBtn.type = "button";
+  cancelBtn.classList.add("cancel-description-btn");
+
+  prompt.addEventListener("click", displayDelete.bind(window, input, desc));
+  cancelBtn.addEventListener("click", displayDelete.bind(window, desc, input));
+  input.addEventListener("submit", TodoControl.submitDescription);
+
+  input.appendChild(textarea);
+  input.appendChild(saveBtn);
+  input.appendChild(cancelBtn);
+
   prompt.classList.add("text-fade");
   desc.appendChild(prompt);
-  return desc;
+  desc.appendChild(input);
+  div.appendChild(desc);
+  div.appendChild(input);
+  return div;
 };
 
 const createTodo = (todo) => {

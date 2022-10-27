@@ -70,6 +70,7 @@ const createDesc = (project) => {
 const createProjectHeader = (project) => {
   const div = document.createElement("div");
   div.classList.add("project-header");
+  div.setAttribute("data-projectId", project.id);
 
   const title = createTitle(project);
   div.appendChild(title);

@@ -38,6 +38,15 @@ const EventAggregator = (function () {
     const obj = Memory.getProjectId(todo.projectId).getTodoId(todo.id);
     obj.toggleDone();
   });
+
+  pubsub.subscribe("ChangeTodoDescription", (id, desc) => {
+    const projectId = parseInt(
+      document.querySelector("[data-projectId]").getAttribute("data-projectId")
+    );
+    const todo = Memory.getTodoId(projectId, id);
+    todo.setDescription(desc);
+    MainControl.updateMain(Memory.getProjectId(projectId));
+  });
 })();
 
 export default EventAggregator;

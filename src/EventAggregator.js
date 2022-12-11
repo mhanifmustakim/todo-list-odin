@@ -47,6 +47,15 @@ const EventAggregator = (function () {
     todo.setDescription(desc);
     MainControl.updateMain(Memory.getProjectId(projectId));
   });
+
+  pubsub.subscribe("ChangeTodoDate", (id, date) => {
+    const projectId = parseInt(
+      document.querySelector("[data-projectId]").getAttribute("data-projectId")
+    );
+    const todo = Memory.getTodoId(projectId, id);
+    todo.setDueDate(date);
+    MainControl.updateMain(Memory.getProjectId(projectId));
+  });
 })();
 
 export default EventAggregator;

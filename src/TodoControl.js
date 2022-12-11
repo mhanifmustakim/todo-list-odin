@@ -14,9 +14,22 @@ const TodoControl = (function () {
     pubsub.publish("ChangeTodoDescription", [parseInt(todoId), descValue]);
   };
 
+  const submitDueDate = (event) => {
+    event.preventDefault();
+    const todoId = event.target.getAttribute("data-id");
+    let date = null;
+    event.target.childNodes.forEach((element) => {
+      if (element.type === "date" && element.name === "todo-dueDate") {
+        date = element.value;
+      }
+    });
+    pubsub.publish("ChangeTodoDate", [parseInt(todoId), date]);
+  };
+
   return {
     toggleDone,
     submitDescription,
+    submitDueDate,
   };
 })();
 

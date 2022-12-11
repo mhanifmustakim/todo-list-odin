@@ -1,3 +1,4 @@
+import { format, formatDistance, compareDesc } from "date-fns";
 import TodoControl from "./TodoControl";
 import { displayDelete } from "./Utils";
 
@@ -10,11 +11,42 @@ const createTitle = (todo) => {
 };
 
 const createDueDate = (todo) => {
-  const dueDate = document.createElement("p");
+  const dueDate = document.createElement("div");
+  const prompt = document.createElement("p");
   dueDate.classList.add("todo-dueDate");
-  if (todo.dueDate) dueDate.textContent = todo.dueDate;
-  else dueDate.textContent = "Add a due date";
+  if (todo.dueDate) {
+    const due = new Date(todo.dueDate);
+    const now = new Date();
+    const hasPassed = compareDesc(due, now) !== -1;
+    prompt.textContent = `${format(
+      new Date(todo.dueDate),
+      "do MMM yyyy"
+    )} (${formatDistance(new Date(todo.dueDate), new Date())} ${
+      hasPassed ? "ago" : "left"
+    })`;
+    prompt.style.color = hasPassed ? "red" : "green";
+  } else {
+    prompt.textContent = "Add a due date";
+  }
 
+  const input = document.createElement("form");
+  const datePicker = document.createElement("input");
+  const submitBtn = document.createElement("button");
+  datePicker.type = "date";
+  datePicker.name = "todo-dueDate";
+  if (todo.dueDate) datePicker.value = todo.dueDate;
+  submitBtn.type = "submit";
+  submitBtn.textContent = "✓";
+  submitBtn.classList.add("submit-btn");
+  input.appendChild(datePicker);
+  input.appendChild(submitBtn);
+  input.classList.add("display-none");
+  input.setAttribute("data-id", todo.id);
+
+  dueDate.appendChild(prompt);
+  dueDate.appendChild(input);
+  prompt.addEventListener("click", displayDelete.bind(window, input, prompt));
+  input.addEventListener("submit", TodoControl.submitDueDate);
   return dueDate;
 };
 

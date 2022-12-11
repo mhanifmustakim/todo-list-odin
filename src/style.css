@@ -229,7 +229,7 @@ button {
     border-radius: 1em;
     width: 100%;
     display: grid;
-    grid-template: auto / 1fr auto auto;
+    grid-template: auto auto / 1fr auto;
     align-items: center;
     gap: 1ch;
 }
@@ -242,11 +242,19 @@ button {
 .todo-dueDate{
     color: var(--fade-color);
     font-size: 0.9em;
+    grid-row: -2 / -1;
+}
+
+.todo-dueDate .submit-btn{
+    margin-left: 0.5em;
+    padding: 0 0.5em;
+    background-color: var(--green);
 }
 
 .todo-checkbox{
     width: 1.5em;
     height: 1.5em;
+    grid-column: -2 /-1;
 }
 
 .todo-desc{
@@ -272,5 +280,14 @@ button {
         grid-template: 1fr / 17.5rem 1fr;
         grid-template-areas:
             "nav main";
+    }
+
+    .todo {
+        grid-template: auto / 1fr auto auto;
+    }
+
+    .todo-dueDate {
+        grid-row: 1 / 2;
+        grid-column: -3 / -2;
     }
 }

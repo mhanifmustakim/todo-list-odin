@@ -40,6 +40,10 @@ li::marker {
     font-weight: bold;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .text-fade {
     color: var(--fade-color);
 }
@@ -191,6 +195,17 @@ li::marker {
     font-family: inherit;
 }
 
+.input-title {
+    background-color: var(--nav-color);
+    border-radius: 0.5em;
+    width: 100%;
+    height: 1.5em;
+    padding: 0.5rem;
+    border: none;
+    resize: none;
+    font-family: inherit;
+}
+
 .input-todo-description {
     border-radius: 0.5em;
     width: 100%;
@@ -208,13 +223,20 @@ button {
     border-radius: 1em;
 }
 
-.save-description-btn {
+.save-btn {
     background-color: var(--green);
 }
 
-.cancel-description-btn {
+.cancel-btn {
     background-color: var(--red);
     margin-right: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.7em;
+    margin-bottom: 0.7em;
 }
 
 #todo-list{
@@ -232,6 +254,29 @@ button {
     grid-template: auto auto / 1fr auto;
     align-items: center;
     gap: 1ch;
+}
+
+.add-todo-form {
+    background-color: var(--custom-white);
+    padding: 1.3em 1em;
+    border-radius: 1em;
+    width: 100%;
+    --nav-color: white;
+}
+
+.add-todo-form header {
+    font-size: 1.2em;
+    margin-bottom: 0.7em;
+}
+
+.add-todo-form .buttons{
+    display: flex;
+    justify-content: right;
+}
+
+.buttons button{
+    float: none;
+    gap: 0.5em;
 }
 
 .todo-title{

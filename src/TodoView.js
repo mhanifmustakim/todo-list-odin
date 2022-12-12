@@ -94,12 +94,12 @@ const createDescription = (todo) => {
   const saveBtn = document.createElement("button");
   saveBtn.appendChild(document.createTextNode("Save"));
   saveBtn.type = "submit";
-  saveBtn.classList.add("save-description-btn");
+  saveBtn.classList.add("save-btn");
 
   const cancelBtn = document.createElement("button");
   cancelBtn.appendChild(document.createTextNode("Cancel"));
   cancelBtn.type = "button";
-  cancelBtn.classList.add("cancel-description-btn");
+  cancelBtn.classList.add("cancel-btn");
 
   prompt.addEventListener("click", displayDelete.bind(window, input, desc));
   cancelBtn.addEventListener("click", displayDelete.bind(window, desc, input));

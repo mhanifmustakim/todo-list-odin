@@ -8,4 +8,35 @@ const displayDelete = (displayNode, deleteNode) => {
   deleteNode.classList.add("display-none");
 };
 
-export { removeById, displayDelete };
+const updateLocalStorage = (Memory) => {
+  const projects = [];
+  const bookmarkedProjects = [];
+  for (const project of Memory.projects) {
+    const projectObj = {
+      id: project.id,
+      type: project.type,
+      title: project.title,
+      description: project.description,
+      todoList: [],
+      isBookmarked: project.isBookmarked,
+    };
+
+    projects.push(projectObj);
+    if (project.isBookmarked) bookmarkedProjects.push(projectObj);
+
+    project.todoList.forEach((todo) => {
+      projects[projects.length - 1].todoList.push({
+        id: todo.id,
+        type: todo.type,
+        title: todo.title,
+        description: todo.description,
+        dueDate: todo.dueDate,
+        isDone: todo.isDone,
+      });
+    });
+  }
+
+  localStorage.projects = JSON.stringify(projects);
+};
+
+export { removeById, displayDelete, updateLocalStorage };

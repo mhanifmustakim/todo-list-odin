@@ -1,7 +1,5 @@
 import pubsub from "pubsub.js";
-import Todo from "./Todo";
 import { createProjectHeader, createTodos } from "./MainView";
-import Memory from "./Memory";
 
 const MainControl = (function () {
   const updateMain = (project) => {
@@ -35,11 +33,7 @@ const MainControl = (function () {
       }
     });
 
-    const newTodo = Todo(title);
-    const project = Memory.getProjectId(projectId);
-    if (description) newTodo.setDescription(description);
-    project.addTodo(newTodo);
-    updateMain(project);
+    pubsub.publish("AddTodo", [projectId, title, description]);
   };
 
   return {
